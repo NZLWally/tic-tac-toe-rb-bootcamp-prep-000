@@ -33,10 +33,6 @@ def valid_move?(board, index)
   index.between?(0,8) && !position_taken?(board, index)
 end
 
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
-end
-
 def won?(board)
   WIN_COMBINATIONS.detect do |combo|
     board[combo[0]] == board[combo[1]] &&
@@ -60,5 +56,25 @@ end
 def winner(board)
   if winning_combo = won?(board)
     board[winning_combo.first]
+  end
+end
+
+def turn(board)
+  puts "Please enter 1-9:"
+  input = gets.strip
+  index = input_to_index(input)
+  if valid_move?(board, index)
+    move(board, index)
+    display_board(board)
+  else
+    turn(board)
+  end
+end
+
+def play(board)
+  turn_count = 0
+  while turn_count < 9
+    turn(board)
+    turn_count+=1
   end
 end
