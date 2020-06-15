@@ -73,14 +73,14 @@ end
 
 def turn_count(board)
   turns = 0
-  board.each do |element|
-    turns += 1 if position_taken?(element)
+  board.each_index do |index|
+    turns += 1 if position_taken?(board, index)
   end
   turns
 end
 
 def current_player(board)
-  if turn_count(board) % 2 == 0 
+  if turn_count(board) % 2 == 0
     'X'
   else
     'O'
