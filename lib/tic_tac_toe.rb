@@ -67,7 +67,7 @@ def turn(board)
     move(board, index, current_player(board))
     display_board(board)
   else
-    turn(board)
+    # turn(board)
   end
 end
 
@@ -88,13 +88,13 @@ def current_player(board)
 end
 
 def play(board)
-  until full?(board)
+  until over?(board)
     turn(board)
   end
   if won?(board)
-    puts "#{winner(board)}'s Game!"
+    puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
-    puts "It was a draw!"
+    puts "Cat's Game!"
   else
     puts 'Huh?'
   end
